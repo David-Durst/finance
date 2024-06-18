@@ -41,7 +41,7 @@ def analyze_one_stock(ticker='MU'):
         for k in financial_keys:
             financials_series[k] = c.convert(financials_series[k], 'KRW', 'USD')
 
-    financials_series['Margin'] = financials_series['Total Revenue'] / financials_series['Net Income']
+    financials_series['Net Margin'] = financials_series['Net Income'] / financials_series['Total Revenue'] * 100
     #financials_series['End of Period'] = stock.financials.iloc[0].index[0]
 
     stock_series = pd.concat([financials_series, info_series])
@@ -67,7 +67,7 @@ reorder_columns = [
     "EPS - Trailing, FY",
     "EPS - Trailing, TTM",
     "EPS - Forward, TTM",
-    "Margin",
+    "Net Margin",
     "Revenue Growth",
     "Number of Analyst Opinions",
 ]
